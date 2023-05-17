@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -10,6 +10,8 @@ import {
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
+import { UserContext } from "../../context/user.context";
+
 import "./sign-in-form.styles.scss";
 
 const defaultFormField = {
@@ -20,6 +22,8 @@ const defaultFormField = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormField);
   const { email, password } = formFields;
+
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,7 +38,7 @@ const SignInForm = () => {
         email,
         password
       );
-      console.log(user);
+      setCurrentUser(user);
       setFormFields(defaultFormField);
       alert("successfully login");
     } catch (error) {
