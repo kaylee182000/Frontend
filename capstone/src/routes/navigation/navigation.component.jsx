@@ -22,7 +22,7 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </Link>
         <div className="nav-links-container">
-          <Link className="nav-link" to="/auth">
+          <Link className="nav-link" to="/shop">
             Shop
           </Link>
           {currentUser ? (
