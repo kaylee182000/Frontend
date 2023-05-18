@@ -2,16 +2,16 @@ import React, { useContext } from "react";
 
 import { ProductContext } from "../../context/product.context";
 
+import ProductCard from "../../components/product-card/product-card.component";
+
+import "./shop.styles.scss";
+
 const Shop = () => {
   const { products } = useContext(ProductContext);
   return (
-    <div>
+    <div className="produtcs-container">
       {products.map((product) => {
-        return (
-          <div key={product.id}>
-            <h1>{product.name}</h1>
-          </div>
-        );
+        return <ProductCard product={product} />;
       })}
     </div>
   );
