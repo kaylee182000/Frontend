@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Icon } from "./";
+import { Icon, UserAccountNav } from "./";
 import { buttonVariants } from "./ui/Button";
 import { cn } from "@/lib/utils";
 import { getAuthSession } from "@/lib/auth";
@@ -22,7 +22,9 @@ const Navbar = async () => {
         {/* {search bar} */}
 
         {/* {signin} */}
-        {!session && (
+        {session?.user ? (
+          <UserAccountNav user={session.user} />
+        ) : (
           <Link
             href={"/sign-in"}
             className={cn(buttonVariants(), "hover:bg-red-rad")}
