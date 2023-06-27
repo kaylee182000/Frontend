@@ -20,6 +20,7 @@ module.exports = {
       },
       colors: {
         "red-rad": "#fd394e",
+        "yellow-rad": "#ffe792",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

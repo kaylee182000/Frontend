@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import { Navbar } from "@/components";
 import { Toaster } from "@/components/ui/Toaster";
+import Providers from "@/components/Providers";
 
 export const metadata = {
   title: "Radishes",
@@ -26,15 +27,17 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <body className="min-h-screen pt-12 bg-slate-50 antialiased">
-        {/* @ts-expect-error Server Component */}
-        <Navbar />
-        {authModal}
-        <div className="container max-w-7xl mx-auto h-full pt-12">
-          {children}
-        </div>
+      <body className="min-h-screen pt-12 bg-white antialiased">
+        <Providers>
+          {/* @ts-expect-error Server Component */}
+          <Navbar />
+          {authModal}
+          <div className="container max-w-7xl mx-auto h-full pt-12">
+            {children}
+          </div>
 
-        <Toaster />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
