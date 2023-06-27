@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       },
     });
 
-    new Response(subredditId);
+    return new Response(subredditId);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response("Invalid request data passed", { status: 422 });
