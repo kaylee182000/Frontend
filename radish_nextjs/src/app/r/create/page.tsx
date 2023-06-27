@@ -82,7 +82,7 @@ const Page = () => {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="pl-6 text-base text-zinc-400 focus-visible:outline-red-rad border-none outline outline-1 outline-zinc-400"
+              className="pl-6 text-base text-zinc-400 focus-visible:outline-red-rad border-none outline outline-1 outline-zinc-200"
             />
           </div>
         </div>

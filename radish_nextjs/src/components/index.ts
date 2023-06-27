@@ -6,9 +6,11 @@ import UserAuthForm from "./UserAuthForm";
 import UserAccountNav from "./UserAccountNav";
 import UserAvatar from "./UserAvatar";
 import CloseModal from "./CloseModal";
+import MiniCreatePost from "./MiniCreatePost";
 
 export {
   Navbar,
+  MiniCreatePost,
   Icon,
   SignIn,
   SignUp,
