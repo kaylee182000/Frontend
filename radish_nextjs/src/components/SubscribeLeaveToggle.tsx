@@ -3,7 +3,7 @@
 import React, { startTransition } from "react";
 import { Button } from "./ui/Button";
 import { useMutation } from "@tanstack/react-query";
-import { SubscribeToSubRedditPayloda } from "@/lib/validators/subreddit";
+import { SubscribeToSubredditPayload } from "@/lib/validators/subreddit";
 import axios, { AxiosError } from "axios";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { toast } from "@/hooks/use-toast";
@@ -24,7 +24,7 @@ const SubscribeLeaveToggle = ({
   const { loginToast } = useCustomToast();
   const { mutate: subscribe, isLoading: isSubLoading } = useMutation({
     mutationFn: async () => {
-      const payload: SubscribeToSubRedditPayloda = {
+      const payload: SubscribeToSubredditPayload = {
         subredditId,
       };
 
@@ -39,24 +39,61 @@ const SubscribeLeaveToggle = ({
       }
 
       return toast({
-        title: "There was a problem",
-        description: "Something went wrong, please try again",
+        title: "There was a problem.",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
     },
     onSuccess: () => {
       startTransition(() => {
+        // Refresh the current route and fetch new data from the server without
+        // losing client-side browser or React state.
         router.refresh();
       });
-
-      return toast({
-        title: "Subscribed",
+      toast({
+        title: "Subscribed!",
         description: `You are now subscribed to r/${subredditName}`,
       });
     },
   });
+
+  const { mutate: unsubscribe, isLoading: isUnsubLoading } = useMutation({
+    mutationFn: async () => {
+      const payload: SubscribeToSubredditPayload = {
+        subredditId,
+      };
+
+      const { data } = await axios.post("/api/subreddit/unsubscribe", payload);
+      return data as string;
+    },
+    onError: (err: AxiosError) => {
+      toast({
+        title: "Error",
+        description: err.response?.data as string,
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      startTransition(() => {
+        // Refresh the current route and fetch new data from the server without
+        // losing client-side browser or React state.
+        router.refresh();
+      });
+      toast({
+        title: "Unsubscribed!",
+        description: `You are now unsubscribed from/${subredditName}`,
+      });
+    },
+  });
+
   return isSubscribed ? (
-    <Button className="w-full mt-1 mb-4">Leave Community</Button>
+    <Button
+      isLoading={isUnsubLoading}
+      onClick={() => unsubscribe()}
+      className="w-full mt-1 mb-4"
+    >
+      Leave Community
+    </Button>
   ) : (
     <Button
       isLoading={isSubLoading}
