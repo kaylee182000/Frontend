@@ -9,7 +9,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { z } from "zod";
 
 import { toast } from "@/hooks/use-toast";
-// import { uploadFiles } from "@/lib/uploadthing";
+import { uploadFiles } from "@/lib/uploadthing";
 import { PostCreationRequest, PostValidator } from "@/lib/validators/post";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -101,21 +101,21 @@ const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           },
           image: {
             class: ImageTool,
-            // config: {
-            //   uploader: {
-            //     async uploadByFile(file: File) {
-            //       // upload to uploadthing
-            //       const [res] = await uploadFiles([file], "imageUploader");
+            config: {
+              uploader: {
+                async uploadByFile(file: File) {
+                  // upload to uploadthing
+                  const [res] = await uploadFiles([file], "imageUploader");
 
-            //       return {
-            //         success: 1,
-            //         file: {
-            //           url: res.fileUrl,
-            //         },
-            //       };
-            //     },
-            //   },
-            // },
+                  return {
+                    success: 1,
+                    file: {
+                      url: res.fileUrl,
+                    },
+                  };
+                },
+              },
+            },
           },
           list: List,
           code: Code,
