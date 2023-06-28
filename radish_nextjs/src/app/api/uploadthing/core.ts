@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 const f = createUploadthing();

@@ -40,6 +40,7 @@ const Editor: React.FC<EditorProps> = ({ subredditId }) => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const pathname = usePathname();
+  console.log(pathname);
 
   const { mutate: createPost } = useMutation({
     mutationFn: async ({
@@ -129,6 +130,7 @@ const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
   useEffect(() => {
     if (Object.keys(errors).length) {
+      // eslint-disable-next-line no-unused-vars
       for (const [_key, value] of Object.entries(errors)) {
         value;
         toast({
@@ -204,7 +206,7 @@ const Editor: React.FC<EditorProps> = ({ subredditId }) => {
           <div id="editor" className="min-h-[500px]" />
           <p className="text-sm text-gray-500">
             Use{" "}
-            <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
+            <kbd className="rounded-md border text-white bg-red-rad px-1 text-xs uppercase">
               Tab
             </kbd>{" "}
             to open the command menu.
