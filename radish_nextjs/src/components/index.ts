@@ -8,6 +8,7 @@ import UserAvatar from "./UserAvatar";
 import CloseModal from "./CloseModal";
 import MiniCreatePost from "./MiniCreatePost";
 import SubscribeLeaveToggle from "./SubscribeLeaveToggle";
+import Editor from "./Editor";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   UserAvatar,
   CloseModal,
   SubscribeLeaveToggle,
+  Editor,
 };
