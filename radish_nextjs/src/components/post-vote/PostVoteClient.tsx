@@ -91,7 +91,7 @@ const PostVoteClient = ({
           className={cn(
             "h-5 w-5 text-zinc-700 hover:text-green-rad hover:fill-green-rad",
             {
-              "text-red-rad fill-red-rad": currentVote === "UP",
+              "text-green-rad fill-green-rad": currentVote === "UP",
             }
           )}
         />
@@ -111,7 +111,7 @@ const PostVoteClient = ({
           className={cn(
             "h-5 w-5 text-zinc-700  hover:text-red-rad hover:fill-red-rad",
             {
-              "text-yellow-rad fill-yellow-rad": currentVote === "DOWN",
+              "text-red-rad fill-red-rad": currentVote === "DOWN",
             }
           )}
         />
