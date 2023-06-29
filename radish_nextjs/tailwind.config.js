@@ -21,6 +21,7 @@ module.exports = {
       colors: {
         "red-rad": "#fd394e",
         "yellow-rad": "#ffe792",
+        "green-rad": "#99ca00",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

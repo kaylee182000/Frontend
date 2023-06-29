@@ -16,7 +16,7 @@ const MiniCreatePost = ({ session }: MiniCreatePostProps) => {
   const router = useRouter();
   const pathName = usePathname();
   return (
-    <div className="overflow-hidden rounded-md bg-white shadow-md">
+    <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
       <div className="h-full px-6 py-4 flex justify-between gap-6">
         <div className="relative">
           <UserAvatar
@@ -32,7 +32,7 @@ const MiniCreatePost = ({ session }: MiniCreatePostProps) => {
           readOnly
           onClick={() => router.push(pathName + "/submit")}
           placeholder="Create Post"
-          className="pl-6 text-base text-zinc-400 focus-visible:outline-red-rad border-none outline outline-1 outline-zinc-200"
+          className="focus-visible:ring-0"
         />
 
         <Button

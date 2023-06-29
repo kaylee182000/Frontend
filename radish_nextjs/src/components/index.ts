@@ -9,6 +9,9 @@ import CloseModal from "./CloseModal";
 import MiniCreatePost from "./MiniCreatePost";
 import SubscribeLeaveToggle from "./SubscribeLeaveToggle";
 import Editor from "./Editor";
+import PostFeed from "./PostFeed";
+import Post from "./Post";
+import EditorOutput from "./EditorOutput";
 
 export {
   Navbar,
@@ -22,4 +25,7 @@ export {
   CloseModal,
   SubscribeLeaveToggle,
   Editor,
+  PostFeed,
+  Post,
+  EditorOutput,
 };
