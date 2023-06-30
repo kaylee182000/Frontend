@@ -12,6 +12,10 @@ import Editor from "./Editor";
 import PostFeed from "./PostFeed";
 import Post from "./Post";
 import EditorOutput from "./EditorOutput";
+import GeneralFeed from "./GeneralFeed";
+import CustomFeed from "./CustomFeed";
+import CommentsSection from "./CommentsSection";
+import CommentVotes from "./CommentVotes";
 
 export {
   Navbar,
@@ -28,4 +32,8 @@ export {
   PostFeed,
   Post,
   EditorOutput,
+  GeneralFeed,
+  CustomFeed,
+  CommentsSection,
+  CommentVotes,
 };
