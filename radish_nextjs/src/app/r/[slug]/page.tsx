@@ -32,7 +32,9 @@ const page = async ({ params }: PageProps) => {
           comments: true,
           subreddit: true,
         },
-
+        orderBy: {
+          createdAt: "desc", //just change this to "desc" to avoid duplication
+        },
         take: INFINITE_SCROLLING_PAGINATION_RESULT,
       },
     },
