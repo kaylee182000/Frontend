@@ -83,9 +83,10 @@ const PostVoteClient = ({
     <div className="flex gap-2 bg-zinc-100 rounded-full">
       <Button
         size="sm"
-        variant="ghost"
+        variant="default"
         aria-label="upvote"
         onClick={() => vote("UP")}
+        className="bg-transparent hover:bg-transparent"
       >
         <ArrowBigUp
           className={cn(
@@ -103,9 +104,10 @@ const PostVoteClient = ({
 
       <Button
         size="sm"
-        variant="ghost"
+        variant="default"
         aria-label="downvote"
         onClick={() => vote("DOWN")}
+        className="bg-transparent hover:bg-transparent"
       >
         <ArrowBigDown
           className={cn(
