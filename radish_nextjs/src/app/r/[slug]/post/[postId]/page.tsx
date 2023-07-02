@@ -47,7 +47,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
         <div className="sm:w-0 w-full flex-1 bg-white p-4 rounded-sm">
           <p className="max-h-40 mt-1 truncate text-xs text-gray-500">
             Posted by<span className="px-1">•</span>u/
-            {post?.author.username ?? cachedPost.authorUsername}
+            {post?.author.name ?? cachedPost?.authorUsername}
             <span className="px-1">•</span>
             {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
           </p>
