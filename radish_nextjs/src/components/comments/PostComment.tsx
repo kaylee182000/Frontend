@@ -79,7 +79,7 @@ const PostComment = ({
         />
         <div className="ml-2 flex items-center gap-x-2">
           <p className="text-sm font-medium text-gray-900">
-            u/{comment.author.username}
+            u/{comment.author.name}
           </p>
 
           <p className="max-h-40 truncate text-xs text-zinc-500">
@@ -90,7 +90,7 @@ const PostComment = ({
 
       <p className="text-sm text-zinc-900 mt-2">{comment.text}</p>
 
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center mt-2">
         <CommentVotes
           commentId={comment.id}
           votesAmt={votesAmt}
@@ -104,6 +104,7 @@ const PostComment = ({
           }}
           variant="ghost"
           size="xs"
+          className="w-20 flex justify-between items-center text-zinc-900 bg-zinc-100 py-2 px-3 rounded-full hover:bg-zinc-200"
         >
           <MessageSquare className="h-4 w-4 mr-1.5" />
           Reply
@@ -154,6 +155,7 @@ const PostComment = ({
           </div>
         </div>
       ) : null}
+      <hr className="h-px mt-4" />
     </div>
   );
 };

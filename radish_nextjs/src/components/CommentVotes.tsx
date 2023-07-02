@@ -76,18 +76,22 @@ const CommentVotes = ({
   });
 
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 bg-zinc-100 rounded-full w-fit">
       {/* upvote */}
       <Button
         onClick={() => vote("UP")}
         size="xs"
         variant="ghost"
         aria-label="upvote"
+        className="bg-transparent hover:bg-transparent"
       >
         <ArrowBigUp
-          className={cn("h-5 w-5 text-zinc-700", {
-            "text-emerald-500 fill-emerald-500": currentVote?.type === "UP",
-          })}
+          className={cn(
+            "h-5 w-5 text-zinc-700 hover:text-green-rad hover:fill-green-rad",
+            {
+              "text-green-rad fill-green-rad": currentVote?.type === "UP",
+            }
+          )}
         />
       </Button>
 
@@ -100,16 +104,20 @@ const CommentVotes = ({
       <Button
         onClick={() => vote("DOWN")}
         size="xs"
-        className={cn({
-          "text-emerald-500": currentVote?.type === "DOWN",
-        })}
+        // className={cn({
+        //   "text-emerald-500": currentVote?.type === "DOWN",
+        // })}
         variant="ghost"
         aria-label="upvote"
+        className="bg-transparent hover:bg-transparent"
       >
         <ArrowBigDown
-          className={cn("h-5 w-5 text-zinc-700", {
-            "text-red-500 fill-red-500": currentVote?.type === "DOWN",
-          })}
+          className={cn(
+            "h-5 w-5 text-zinc-700  hover:text-red-rad hover:fill-red-rad",
+            {
+              "text-red-rad fill-red-rad": currentVote?.type === "DOWN",
+            }
+          )}
         />
       </Button>
     </div>
