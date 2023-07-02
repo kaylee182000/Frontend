@@ -80,7 +80,7 @@ const PostVoteClient = ({
   });
 
   return (
-    <div className="flex gap-2 bg-zinc-100 rounded-full">
+    <div className="flex gap-2 bg-zinc-100 rounded-full w-fit">
       <Button
         size="sm"
         variant="default"
