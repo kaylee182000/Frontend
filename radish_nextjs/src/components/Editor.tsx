@@ -40,7 +40,6 @@ const Editor: React.FC<EditorProps> = ({ subredditId }) => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const pathname = usePathname();
-  console.log(pathname);
 
   const { mutate: createPost } = useMutation({
     mutationFn: async ({
