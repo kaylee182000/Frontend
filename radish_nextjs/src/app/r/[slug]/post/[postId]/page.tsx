@@ -44,26 +44,11 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
   return (
     <div>
       <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between">
-        <Suspense fallback={<PostVoteShell />}>
-          {/* @ts-expect-error server component */}
-          <PostVoteServer
-            postId={post?.id ?? cachedPost.id}
-            getData={async () => {
-              return await db!.post.findUnique({
-                where: {
-                  id: params.postId,
-                },
-                include: {
-                  votes: true,
-                },
-              });
-            }}
-          />
-        </Suspense>
-
         <div className="sm:w-0 w-full flex-1 bg-white p-4 rounded-sm">
           <p className="max-h-40 mt-1 truncate text-xs text-gray-500">
-            Posted by u/{post?.author.username}{" "}
+            Posted by<span className="px-1">•</span>u/
+            {post?.author.username ?? cachedPost.authorUsername}
+            <span className="px-1">•</span>
             {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
           </p>
           <h1 className="text-xl font-semibold py-2 leading-6 text-gray-900">
@@ -71,6 +56,25 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
           </h1>
 
           <EditorOutput content={post?.content ?? cachedPost.content} />
+          <div className="mt-6">
+            <Suspense fallback={<PostVoteShell />}>
+              {/* @ts-expect-error server component */}
+              <PostVoteServer
+                postId={post?.id ?? cachedPost.id}
+                getData={async () => {
+                  return await db!.post.findUnique({
+                    where: {
+                      id: params.postId,
+                    },
+                    include: {
+                      votes: true,
+                    },
+                  });
+                }}
+              />
+            </Suspense>
+          </div>
+
           <Suspense
             fallback={
               <Loader2 className="h-5 w-5 animate-spin text-zinc-500" />
@@ -87,7 +91,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 
 function PostVoteShell() {
   return (
-    <div className="flex items-center flex-col pr-6 w-20">
+    <div className="flex gap-2 bg-zinc-100 rounded-full w-fit">
       {/* upvote */}
       <div className={buttonVariants({ variant: "ghost" })}>
         <ArrowBigUp className="h-5 w-5 text-zinc-700" />
