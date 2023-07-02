@@ -16,6 +16,7 @@ import GeneralFeed from "./GeneralFeed";
 import CustomFeed from "./CustomFeed";
 import CommentsSection from "./CommentsSection";
 import CommentVotes from "./CommentVotes";
+import SearchBar from "./SearchBar";
 
 export {
   Navbar,
@@ -36,4 +37,5 @@ export {
   CustomFeed,
   CommentsSection,
   CommentVotes,
+  SearchBar,
 };
