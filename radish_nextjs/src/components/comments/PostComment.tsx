@@ -37,7 +37,7 @@ const PostComment = ({
   const { data: session } = useSession();
   const [isReplying, setIsReplying] = useState<boolean>(false);
   const commentRef = useRef<HTMLDivElement>(null);
-  const [input, setInput] = useState<string>(`@${comment.author.username} `);
+  const [input, setInput] = useState<string>(`@${comment.author.name} `);
   const router = useRouter();
   useOnClickOutside(commentRef, () => {
     setIsReplying(false);
