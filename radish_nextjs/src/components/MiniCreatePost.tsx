@@ -6,7 +6,7 @@ import React from "react";
 import UserAvatar from "./UserAvatar";
 import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
-import { ImageIcon, Link2 } from "lucide-react";
+import { ImageIcon, Link2, PencilIcon } from "lucide-react";
 
 interface MiniCreatePostProps {
   session: Session | null;
@@ -32,8 +32,16 @@ const MiniCreatePost = ({ session }: MiniCreatePostProps) => {
           readOnly
           onClick={() => router.push(pathName + "/submit")}
           placeholder="Create Post"
-          className="focus-visible:ring-0"
+          className="focus-visible:ring-0 hidden md:inline-block"
         />
+
+        <Button
+          variant="ghost"
+          onClick={() => router.push(pathName + "/submit")}
+          className="sm:hidden inline-block"
+        >
+          <PencilIcon className="text-zinc-600" />
+        </Button>
 
         <Button
           variant="ghost"
