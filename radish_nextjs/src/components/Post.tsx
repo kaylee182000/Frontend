@@ -2,7 +2,7 @@
 
 import { formatTimeToNow } from "@/lib/utils";
 import { Post, User, Vote } from "@prisma/client";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Share } from "lucide-react";
 import Link from "next/link";
 import { FC, useRef } from "react";
 import { EditorOutput } from "./";
@@ -77,10 +77,19 @@ const Post: FC<PostProps> = ({
         />
         <Link
           href={`/r/${subredditName}/post/${post.id}`}
-          className="w-20 flex justify-between items-center text-zinc-900 font-medium bg-zinc-100 py-2 px-3 rounded-full hover:bg-zinc-200"
+          className="w-16 flex justify-between items-center text-zinc-900 font-medium bg-zinc-100 py-2 px-3 rounded-full hover:bg-zinc-200"
         >
           <MessageSquare className="h-4 w-4" /> {commentAmt}
         </Link>
+        {/* share button */}
+        <span
+          onClick={() => {}}
+          // console.log(`${window.location.href}/post/${post.id}`)
+          // href={`/r/${subredditName}/post/${post.id}`}
+          className="w-24 flex justify-between items-center text-zinc-900 font-medium text-sm bg-zinc-100 py-2 px-3 rounded-full hover:bg-zinc-200 cursor-pointer"
+        >
+          <Share className="h-4 w-4" /> Share
+        </span>
       </div>
     </div>
   );
