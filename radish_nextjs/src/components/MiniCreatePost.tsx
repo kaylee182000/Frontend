@@ -38,7 +38,7 @@ const MiniCreatePost = ({ session }: MiniCreatePostProps) => {
         <Button
           variant="ghost"
           onClick={() => router.push(pathName + "/submit")}
-          className="sm:hidden inline-block"
+          className="md:hidden inline-block"
         >
           <PencilIcon className="text-zinc-600" />
         </Button>
