@@ -1,8 +1,10 @@
 import { CustomFeed, GeneralFeed } from "@/components";
 import { buttonVariants } from "@/components/ui/Button";
+import { Skeleton } from "@/components/ui/Skeleton";
 import { getAuthSession } from "@/lib/auth";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
@@ -14,8 +16,17 @@ export default async function Home() {
       <h1 className="font-bold text-3xl md:text-4xl">Your Feed</h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 gap-y-4 md:gap-y-4 py-6">
         {/* feed */}
-        {/* @ts-expect-error Server Component */}
-        {session ? <CustomFeed /> : <GeneralFeed />}
+        {session ? (
+          <Suspense fallback={<SkeletonLoading />}>
+            {/* @ts-expect-error Server Component */}
+            <CustomFeed />
+          </Suspense>
+        ) : (
+          <Suspense fallback={<SkeletonLoading />}>
+            {/* @ts-expect-error Server Component */}
+            <GeneralFeed />
+          </Suspense>
+        )}
         {/* subreddit info */}
         <div className="overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last shadow-xl">
           <div className="bg-red-rad px-6 py-4">
@@ -47,3 +58,52 @@ export default async function Home() {
     </>
   );
 }
+
+const SkeletonLoading = () => {
+  return (
+    <ul className="flex flex-col col-span-2 space-y-6">
+      <li>
+        <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
+          <div className=" px-6 py-4 flex flex-col gap-4">
+            <Skeleton className="h-5 w-[280px]" />
+            <Skeleton className="h-5 w-[200px]" />
+            <Skeleton className="h-16 w-full" />
+            <div className="flex gap-3">
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
+          <div className=" px-6 py-4 flex flex-col gap-4">
+            <Skeleton className="h-5 w-[280px]" />
+            <Skeleton className="h-5 w-[200px]" />
+            <Skeleton className="h-6 w-full" />
+            <div className="flex gap-3">
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
+          <div className=" px-6 py-4 flex flex-col gap-4">
+            <Skeleton className="h-5 w-[280px]" />
+            <Skeleton className="h-5 w-[200px]" />
+            <Skeleton className="h-16 w-full" />
+            <div className="flex gap-3">
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+              <Skeleton className="h-8 w-[80px] rounded-full" />
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  );
+};
