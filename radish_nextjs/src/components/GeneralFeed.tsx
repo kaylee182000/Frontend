@@ -1,7 +1,8 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULT } from "@/config";
 import { db } from "@/lib/db";
-import React from "react";
+import React, { Suspense } from "react";
 import PostFeed from "./PostFeed";
+import SkeletonLoading from "./SkeletonLoading";
 
 const GeneralFeed = async () => {
   const posts = await db!.post.findMany({
@@ -16,7 +17,11 @@ const GeneralFeed = async () => {
     },
     take: INFINITE_SCROLLING_PAGINATION_RESULT,
   });
-  return <PostFeed initialPosts={posts} />;
+  return (
+    <Suspense fallback={<SkeletonLoading />}>
+      <PostFeed initialPosts={posts} />
+    </Suspense>
+  );
 };
 
 export default GeneralFeed;

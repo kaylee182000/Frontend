@@ -18,6 +18,7 @@ import CommentsSection from "./CommentsSection";
 import CommentVotes from "./CommentVotes";
 import SearchBar from "./SearchBar";
 import ToFeedButton from "./ToFeedButton";
+import SkeletonLoading from "./SkeletonLoading";
 
 export {
   Navbar,
@@ -40,4 +41,5 @@ export {
   CommentVotes,
   SearchBar,
   ToFeedButton,
+  SkeletonLoading,
 };

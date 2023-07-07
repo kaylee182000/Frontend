@@ -1,8 +1,9 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULT } from "@/config";
 import { db } from "@/lib/db";
-import React from "react";
+import React, { Suspense } from "react";
 import PostFeed from "./PostFeed";
 import { getAuthSession } from "@/lib/auth";
+import SkeletonLoading from "./SkeletonLoading";
 
 const CustomFeed = async () => {
   const session = await getAuthSession();
@@ -35,7 +36,11 @@ const CustomFeed = async () => {
     take: INFINITE_SCROLLING_PAGINATION_RESULT,
   });
 
-  return <PostFeed initialPosts={posts} />;
+  return (
+    <Suspense fallback={<SkeletonLoading />}>
+      <PostFeed initialPosts={posts} />
+    </Suspense>
+  );
 };
 
 export default CustomFeed;
