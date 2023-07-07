@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import { ExtendedPost } from "@/types/db";
 import { useIntersection } from "@mantine/hooks";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { INFINITE_SCROLLING_PAGINATION_RESULT } from "@/config";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { Post } from "./";
+import { Post, SkeletonLoading } from "./";
 import { Loader2 } from "lucide-react";
 
 interface PostFeedProps {
@@ -67,13 +67,15 @@ const PostFeed = ({ initialPosts, subredditName }: PostFeedProps) => {
         if (index === posts.length - 1) {
           return (
             <li key={post.authorId} ref={ref}>
-              <Post
-                post={post}
-                commentAmt={post.comments.length}
-                subredditName={post.subreddit.name}
-                votesAmt={votesAmt}
-                currentVote={currentVote}
-              />
+              <Suspense fallback={<SkeletonLoading />}>
+                <Post
+                  post={post}
+                  commentAmt={post.comments.length}
+                  subredditName={post.subreddit.name}
+                  votesAmt={votesAmt}
+                  currentVote={currentVote}
+                />
+              </Suspense>
             </li>
           );
         } else {
