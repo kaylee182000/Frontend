@@ -71,7 +71,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
       toast({
         description: "Your username has been updated.",
       });
-      router.refresh();
+      router.back();
     },
   });
 
