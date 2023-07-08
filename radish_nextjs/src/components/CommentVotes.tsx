@@ -108,7 +108,7 @@ const CommentVotes = ({
         //   "text-emerald-500": currentVote?.type === "DOWN",
         // })}
         variant="ghost"
-        aria-label="upvote"
+        aria-label="downvote"
         className="bg-transparent hover:bg-transparent"
       >
         <ArrowBigDown
