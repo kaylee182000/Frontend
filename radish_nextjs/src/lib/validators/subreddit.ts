@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const SubRedditValidator = z.object({
-  name: z.string().min(3).max(21),
+  name: z.string().min(3).max(15),
 });
 
 export const SubRedditSubscriptionValidator = z.object({

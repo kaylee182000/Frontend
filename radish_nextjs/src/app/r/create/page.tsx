@@ -37,7 +37,7 @@ const Page = () => {
         if (err.response?.status === 422) {
           return toast({
             title: "Invalid subradish name",
-            description: "Please choose a name between 3 and 21 characters.",
+            description: "Please choose a name between 3 and 15 characters.",
             variant: "destructive",
           });
         }
