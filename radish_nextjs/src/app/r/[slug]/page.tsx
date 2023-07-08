@@ -61,7 +61,7 @@ const page = async ({ params }: PageProps) => {
 
   return (
     <>
-      <div className="flex content-center sm:justify-start justify-between gap-4">
+      <div className="flex content-center lg:justify-start justify-between gap-4">
         <h1 className="font-bold text-3xl md:text-4xl h-14">
           r/{subreddit.name}
         </h1>

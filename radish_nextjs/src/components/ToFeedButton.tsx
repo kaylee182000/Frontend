@@ -20,7 +20,7 @@ const ToFeedButton = () => {
         buttonVariants({
           variant: "default",
         }),
-        "text-red-rad bg-white shadow-sm hover:bg-white"
+        "text-red-rad bg-white shadow-sm hover:bg-white hidden lg:inline-flex"
       )}
     >
       <ChevronLeft className="h-4 w-4 mr-1" />
