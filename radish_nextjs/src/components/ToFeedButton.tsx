@@ -3,6 +3,7 @@
 import { ChevronLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { buttonVariants } from "./ui/Button";
+import { cn } from "@/lib/utils";
 
 const ToFeedButton = () => {
   const pathname = usePathname();
@@ -15,9 +16,12 @@ const ToFeedButton = () => {
   return (
     <a
       href={subredditPath}
-      className={buttonVariants({
-        variant: "default",
-      })}
+      className={cn(
+        buttonVariants({
+          variant: "default",
+        }),
+        "text-red-rad bg-white shadow-sm hover:bg-white"
+      )}
     >
       <ChevronLeft className="h-4 w-4 mr-1" />
       {subredditPath === "/" ? "Back home" : "Back to community"}

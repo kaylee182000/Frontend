@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 
 import { getAuthSession } from "@/lib/auth";
 
-import { MiniCreatePost, PostFeed } from "@/components";
+import { MiniCreatePost, PostFeed, SubscribeLeaveToggle } from "@/components";
 
 import { INFINITE_SCROLLING_PAGINATION_RESULT } from "@/config";
 
@@ -44,11 +44,35 @@ const page = async ({ params }: PageProps) => {
     return notFound();
   }
 
+  const subscription = !session?.user
+    ? undefined
+    : await db?.subscription.findFirst({
+        where: {
+          subreddit: {
+            name: slug,
+          },
+          user: {
+            id: session.user.id,
+          },
+        },
+      });
+
+  const isSubscribed = !!subscription;
+
   return (
     <>
-      <h1 className="font-bold text-3xl md:text-4xl h-14">
-        r/{subreddit.name}
-      </h1>
+      <div className="flex content-center sm:justify-start justify-between gap-4">
+        <h1 className="font-bold text-3xl md:text-4xl h-14">
+          r/{subreddit.name}
+        </h1>
+        {subreddit.creatorId !== session?.user.id ? (
+          <SubscribeLeaveToggle
+            subredditId={subreddit.id}
+            subredditName={subreddit.name}
+            isSubscribed={isSubscribed}
+          />
+        ) : null}
+      </div>
       <MiniCreatePost session={session} />
       <PostFeed initialPosts={subreddit.posts} subredditName={subreddit.name} />
     </>

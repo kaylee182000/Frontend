@@ -77,7 +77,9 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 
           <Suspense
             fallback={
-              <Loader2 className="h-5 w-5 animate-spin text-zinc-500" />
+              <div className="flex justify-center mt-4">
+                <Loader2 className="h-5 w-5 animate-spin text-zinc-500" />
+              </div>
             }
           >
             {/* @ts-expect-error Server Component */}
@@ -91,7 +93,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 
 function PostVoteShell() {
   return (
-    <div className="flex gap-2 bg-zinc-100 rounded-full w-fit">
+    <div className="flex items-center gap-2 bg-zinc-100 rounded-full w-fit">
       {/* upvote */}
       <div className={buttonVariants({ variant: "ghost" })}>
         <ArrowBigUp className="h-5 w-5 text-zinc-700" />

@@ -90,17 +90,17 @@ const SubscribeLeaveToggle = ({
     <Button
       isLoading={isUnsubLoading}
       onClick={() => unsubscribe()}
-      className="w-full mt-1 mb-4"
+      className="bg-red-rad  hover:bg-red-rad rounded-full"
     >
-      Leave Community
+      Leave
     </Button>
   ) : (
     <Button
       isLoading={isSubLoading}
-      className="w-full mt-1 mb-4"
+      className="bg-green-rad  hover:bg-green-rad rounded-full"
       onClick={() => subscribe()}
     >
-      Join to post
+      Join
     </Button>
   );
 };

@@ -68,16 +68,16 @@ const PostComment = ({
   });
 
   return (
-    <div ref={commentRef} className="flex flex-col">
-      <div className="flex items-center">
-        <UserAvatar
-          user={{
-            name: comment.author.name || null,
-            image: comment.author.image || null,
-          }}
-          className="h-6 w-6"
-        />
-        <div className="ml-2 flex items-center gap-x-2">
+    <div ref={commentRef} className="flex gap-4">
+      <UserAvatar
+        user={{
+          name: comment.author.name || null,
+          image: comment.author.image || null,
+        }}
+        className="h-6 w-6"
+      />
+      <div className="flex flex-col w-full">
+        <div className="flex items-center gap-x-2">
           <p className="text-sm font-medium text-gray-900">
             u/{comment.author.name}
           </p>
@@ -86,76 +86,72 @@ const PostComment = ({
             {formatTimeToNow(new Date(comment.createdAt))}
           </p>
         </div>
-      </div>
+        <p className="text-sm text-zinc-900 mt-2">{comment.text}</p>
+        <div className="flex gap-2 items-center mt-2">
+          <CommentVotes
+            commentId={comment.id}
+            votesAmt={votesAmt}
+            currentVote={currentVote}
+          />
 
-      <p className="text-sm text-zinc-900 mt-2">{comment.text}</p>
+          <Button
+            onClick={() => {
+              if (!session) return router.push("/sign-in");
+              setIsReplying(true);
+            }}
+            variant="ghost"
+            size="xs"
+            className="w-20 flex justify-between items-center text-zinc-900 bg-zinc-100 py-2 px-3 rounded-full hover:bg-zinc-200"
+          >
+            <MessageSquare className="h-4 w-4 mr-1.5" />
+            Reply
+          </Button>
+        </div>
+        {isReplying ? (
+          <div className="grid w-full gap-1.5 mt-4">
+            <Label htmlFor="comment">Your comment</Label>
+            <div className="mt-2">
+              <Textarea
+                onFocus={(e: any) =>
+                  e.currentTarget.setSelectionRange(
+                    e.currentTarget.value.length,
+                    e.currentTarget.value.length
+                  )
+                }
+                autoFocus
+                id="comment"
+                value={input}
+                onChange={(e: any) => setInput(e.target.value)}
+                rows={1}
+                placeholder="What are your thoughts?"
+              />
 
-      <div className="flex gap-2 items-center mt-2">
-        <CommentVotes
-          commentId={comment.id}
-          votesAmt={votesAmt}
-          currentVote={currentVote}
-        />
-
-        <Button
-          onClick={() => {
-            if (!session) return router.push("/sign-in");
-            setIsReplying(true);
-          }}
-          variant="ghost"
-          size="xs"
-          className="w-20 flex justify-between items-center text-zinc-900 bg-zinc-100 py-2 px-3 rounded-full hover:bg-zinc-200"
-        >
-          <MessageSquare className="h-4 w-4 mr-1.5" />
-          Reply
-        </Button>
-      </div>
-
-      {isReplying ? (
-        <div className="grid w-full gap-1.5">
-          <Label htmlFor="comment">Your comment</Label>
-          <div className="mt-2">
-            <Textarea
-              onFocus={(e: any) =>
-                e.currentTarget.setSelectionRange(
-                  e.currentTarget.value.length,
-                  e.currentTarget.value.length
-                )
-              }
-              autoFocus
-              id="comment"
-              value={input}
-              onChange={(e: any) => setInput(e.target.value)}
-              rows={1}
-              placeholder="What are your thoughts?"
-            />
-
-            <div className="mt-2 flex justify-end gap-2">
-              <Button
-                tabIndex={-1}
-                variant="subtle"
-                onClick={() => setIsReplying(false)}
-              >
-                Cancel
-              </Button>
-              <Button
-                isLoading={isLoading}
-                onClick={() => {
-                  if (!input) return;
-                  postComment({
-                    postId,
-                    text: input,
-                    replyToId: comment.replyToId ?? comment.id, // default to top-level comment
-                  });
-                }}
-              >
-                Post
-              </Button>
+              <div className="mt-2 flex justify-end gap-2">
+                <Button
+                  tabIndex={-1}
+                  variant="subtle"
+                  onClick={() => setIsReplying(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  isLoading={isLoading}
+                  onClick={() => {
+                    if (!input) return;
+                    postComment({
+                      postId,
+                      text: input,
+                      replyToId: comment.replyToId ?? comment.id, // default to top-level comment
+                    });
+                  }}
+                >
+                  Post
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      ) : null}
-      <hr className="h-px mt-4" />
+        ) : null}
+      </div>
     </div>
   );
 };

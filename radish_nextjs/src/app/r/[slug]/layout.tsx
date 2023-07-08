@@ -3,9 +3,7 @@ import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { SubscribeLeaveToggle, ToFeedButton } from "@/components";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/Button";
+import { ToFeedButton } from "@/components";
 
 const Layout = async ({
   children,
@@ -30,21 +28,6 @@ const Layout = async ({
     },
   });
 
-  const subscription = !session?.user
-    ? undefined
-    : await db?.subscription.findFirst({
-        where: {
-          subreddit: {
-            name: slug,
-          },
-          user: {
-            id: session.user.id,
-          },
-        },
-      });
-
-  const isSubscribed = !!subscription;
-
   const memberCount = await db?.subscription.count({
     where: {
       subreddit: {
@@ -66,8 +49,8 @@ const Layout = async ({
           {/* info sidebar */}
 
           <div className="hidden md:block overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last shadow-lg">
-            <div className="px-6 py-4 bg-red-rad">
-              <p className="font-semibold py-3 text-white">
+            <div className="px-6 py-4 bg-black">
+              <p className="font-semibold py-3 text-red-rad">
                 About r/{subreddit.name}
               </p>
             </div>
@@ -93,24 +76,6 @@ const Layout = async ({
                   <p className="text-gray-500">You created this community</p>
                 </div>
               ) : null}
-
-              {subreddit.creatorId !== session?.user.id ? (
-                <SubscribeLeaveToggle
-                  subredditId={subreddit.id}
-                  subredditName={subreddit.name}
-                  isSubscribed={isSubscribed}
-                />
-              ) : null}
-
-              <Link
-                className={buttonVariants({
-                  variant: "outline",
-                  className: "w-full mb-2",
-                })}
-                href={`r/${slug}/submit`}
-              >
-                Create Post
-              </Link>
             </dl>
           </div>
         </div>
