@@ -11,7 +11,7 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
       <div className="flex flex-col space-y-2 text-center">
         <Icon.logo className="mx-auto" />
         <h1 className="text-2xl font-semibold tracking-tight">Sign Up</h1>
-        <p className="text-sm max-w-xs mx-auto">
+        <p className="text-sm max-w-xs mx-auto leading-6">
           By continuing, you are setting up a Radishes account and agree to our
           <br />
           <span className="font-bold">User Agreement and Privacy Policy</span>
