@@ -5,8 +5,9 @@ import { Post, User, Vote } from "@prisma/client";
 import { MessageSquare, Share } from "lucide-react";
 import Link from "next/link";
 import { FC, useRef } from "react";
-import { EditorOutput } from "./";
+import { EditorOutput, OtherOption } from "./";
 import PostVoteClient from "./post-vote/PostVoteClient";
+import { usePathname } from "next/navigation";
 
 type PartialVote = Pick<Vote, "type">;
 
@@ -29,26 +30,30 @@ const Post: FC<PostProps> = ({
   commentAmt,
 }) => {
   const pRef = useRef<HTMLParagraphElement>(null);
+  const pathName = usePathname();
 
   return (
     <div className="rounded-2xl bg-white shadow-xl overflow-hidden">
       <div className="px-6 py-4 flex justify-between">
         <div className="w-0 flex-1">
-          <div className="max-h-40 my-1 text-xs text-gray-500">
-            {subredditName ? (
-              <>
-                <a
-                  className="underline text-zinc-900 font-medium text-sm underline-offset-2"
-                  href={`/r/${subredditName}`}
-                >
-                  r/{subredditName}
-                </a>
-                <span className="px-1">•</span>
-              </>
-            ) : null}
-            <span>Posted by u/{post.author.name}</span>
-            <span className="px-1">•</span>
-            {formatTimeToNow(new Date(post.createdAt))}
+          <div className="flex justify-between items-start gap-4">
+            <div className="max-h-40 my-1 text-xs text-gray-500 leading-5">
+              {subredditName ? (
+                <>
+                  <a
+                    className="underline text-zinc-900 font-medium text-sm underline-offset-2"
+                    href={`/r/${subredditName}`}
+                  >
+                    r/{subredditName}
+                  </a>
+                  <span className="px-1">•</span>
+                </>
+              ) : null}
+              <span>Posted by u/{post.author.name}</span>
+              <span className="px-1">•</span>
+              {formatTimeToNow(new Date(post.createdAt))}
+            </div>
+            {pathName === "/profile" && <OtherOption />}
           </div>
           <a href={`/r/${subredditName}/post/${post.id}`}>
             <h1 className="text-xl font-semibold py-2 leading-6 text-gray-900">

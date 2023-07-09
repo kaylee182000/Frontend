@@ -19,6 +19,7 @@ import CommentVotes from "./CommentVotes";
 import SearchBar from "./SearchBar";
 import ToFeedButton from "./ToFeedButton";
 import SkeletonLoading from "./SkeletonLoading";
+import OtherOption from "./OtherOption";
 
 export {
   Navbar,
@@ -42,4 +43,5 @@ export {
   SearchBar,
   ToFeedButton,
   SkeletonLoading,
+  OtherOption,
 };
