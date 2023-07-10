@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from "@/components";
 import { Toaster } from "@/components/ui/Toaster";
 import Providers from "@/components/Providers";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata = {
   title: "Radishes",
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Providers>
           {/* @ts-expect-error Server Component */}
           <Navbar />
+          <NextTopLoader color="#fd394e" speed={500} showSpinner={false} />
           {authModal}
           <div className="container max-w-7xl mx-auto h-full pt-6">
             {children}
