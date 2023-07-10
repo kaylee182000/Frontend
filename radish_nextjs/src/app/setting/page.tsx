@@ -24,7 +24,7 @@ export default async function SettingsPage() {
           <UserNameForm
             user={{
               id: session.user.id,
-              username: session.user.username || "",
+              name: session.user.name || "",
             }}
           />
         </div>

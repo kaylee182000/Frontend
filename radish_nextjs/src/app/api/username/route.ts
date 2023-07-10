@@ -17,7 +17,7 @@ export async function PATCH(req: Request) {
     // check if username is taken
     const username = await db?.user.findFirst({
       where: {
-        username: name,
+        name: name,
       },
     });
 
@@ -31,7 +31,7 @@ export async function PATCH(req: Request) {
         id: session.user.id,
       },
       data: {
-        username: name,
+        name: name,
       },
     });
 
